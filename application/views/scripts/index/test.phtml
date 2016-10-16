@@ -1,0 +1,16 @@
+<?php
+$translateObj = Zend_Registry::get('translate');
+$langLocale = 'gb';
+if (!$translateObj->isAvailable($langLocale)) {
+	$translateObj->addTranslation(array('content' => array('test' => 'testger'), 'locale' => 'de'));
+}
+ini_set('display_errors', 1);
+ini_set('error_reporting', 'E_ALL');
+try{	
+	$translateObj->setLocale($langLocale);
+	echo $translateObj->translate('test');
+	echo $this->translate('test');
+} catch(Exception $e) {
+	echo $e->getMessage();exit;
+}
+?>
